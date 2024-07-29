@@ -57,7 +57,7 @@ const {user}=useSelector(state=>state.auth)
                     <NavLink to='/categories' className="nav-link">Kategoriler</NavLink>
                     <NavLink to='/contact' className="nav-link">İletişim</NavLink>
                     {/* <NavLink to='/login' className="nav-link">Üye ol</NavLink> */}
-                    {user === ''? (
+                    {user == ''? (
                         <NavLink to='/login' className="nav-link">Giriş Yap</NavLink>
                     ) : <NavLink className="nav-link" to='/'><button onClick={logout} className="nav-link-quit">Çıkış Yap</button></NavLink>}
                     <NavLink to='/signup' className="nav-link">KAYIT OL </NavLink>

@@ -90,7 +90,7 @@ export default function BasketProducts() {
                       .replace("[", "")
                       .replace("]", "")
                       .replaceAll('"', "")}
-                      alt={selectProductItem.productName}
+                      alt={selectProductItem.productname}
                   />
                 </div>
                 <div className="basket-items-info">
