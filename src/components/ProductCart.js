@@ -1,9 +1,9 @@
-import { useSite } from "../context/AppContext";
+// import { useSite } from "../context/AppContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBasketShopping, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { addBasket, addLike } from "../firebase";
 import { useSelector } from "react-redux";
@@ -13,19 +13,16 @@ export default function ProductCart({
   productItemIndex,
   findProduct = undefined,
 }) {
-  const {
-    setSelectProductItems,
-    selectProductItems,
-    setTotalPrice,
-    likeItems,
-    setLikeItems,
-  } = useSite();
+  // const {
+  //   likeItems,
+  //   setLikeItems,
+  // } = useSite();
   const [sizeOpen, setSizeOpen] = useState(false);
   const { user } = useSelector((state) => state.auth);
 
-  const showToastMessage = () => {
-    toast.success("Ürün Sepete Eklendi!");
-  };
+  // const showToastMessage = () => {
+  //   toast.success("Ürün Sepete Eklendi!");
+  // };
 
   const handleSizeOpen = () => {
     setSizeOpen(!sizeOpen);
@@ -51,16 +48,16 @@ export default function ProductCart({
   };
 
 
-  const likeUnLike = (product) => {
-    const isLiked = likeItems.find((item) => item.id === product.id);
-    if (isLiked) {
-      setLikeItems((prevItems) =>
-        prevItems.filter((item) => item.id !== product.id)
-      );
-    } else {
-      setLikeItems([...likeItems, product]);
-    }
-  };
+  // const likeUnLike = (product) => {
+  //   const isLiked = likeItems.find((item) => item.id === product.id);
+  //   if (isLiked) {
+  //     setLikeItems((prevItems) =>
+  //       prevItems.filter((item) => item.id !== product.id)
+  //     );
+  //   } else {
+  //     setLikeItems([...likeItems, product]);
+  //   }
+  // };
 
   const likeadd = async (e) => {
     e.preventDefault();
@@ -92,6 +89,7 @@ export default function ProductCart({
                   .replace("[", "")
                   .replace("]", "")
                   .replaceAll('"', "")}
+                  alt={productItem.title}
               />
             </Link>
             {sizeOpen && (

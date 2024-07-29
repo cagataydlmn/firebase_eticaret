@@ -3,7 +3,6 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -14,7 +13,6 @@ import {
   where,
   deleteDoc,
   doc,
-  getDoc,
   getDocs,
   runTransaction,
 } from "firebase/firestore";
@@ -56,6 +54,7 @@ export const addLike = async (likeItem, uid) => {
     ...likeItem,
     uid: uid,
   });
+return result
 };
 
 export const getLikeItems = (callback) => {
@@ -83,6 +82,7 @@ export const deleteLike = async (id) => {
 
 export const addComment = async (data) => {
   const result = await addDoc(collection(db, "comments"), data);
+return result
 };
 
 export const getComment = (callback) => {
@@ -150,7 +150,7 @@ export const updateBasketItemQuantity = async (itemId, newQuantity) => {
   await runTransaction(db, async (transaction) => {
     const itemDoc = await transaction.get(itemRef);
     transaction.update(itemRef, { productQuantity: newQuantity });
-  });
+return itemDoc  });
 };
 
 export const deleteBasketItem = async (itemId) => {

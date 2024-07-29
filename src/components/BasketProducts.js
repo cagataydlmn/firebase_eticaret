@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useSite } from "../context/AppContext";
 import {
   deleteBasketItem,
@@ -10,7 +10,7 @@ import {
 import { setBasketItems } from "../store/basketItemsReducer";
 
 export default function BasketProducts() {
-  const { setSelectProductItems, selectProductItems, setTotalPrice } =
+  const { setSelectProductItems, setTotalPrice } =
     useSite();
   const basketItems = useSelector((state) => state.basketItems.items);
   const dispatch = useDispatch();
@@ -90,6 +90,7 @@ export default function BasketProducts() {
                       .replace("[", "")
                       .replace("]", "")
                       .replaceAll('"', "")}
+                      alt={selectProductItem.productName}
                   />
                 </div>
                 <div className="basket-items-info">
@@ -141,6 +142,7 @@ export default function BasketProducts() {
         <div className="total-price">
           <div>ToplamFiyatı:{totalPrice}</div>
         </div>
+        <div><button><Link to="/buy">Satın al </Link> </button></div>
       </ul>
     </div>
   );

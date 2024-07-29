@@ -50,14 +50,14 @@ const {user}=useSelector(state=>state.auth)
                         </div>
                     </NavLink>
                 </div>
-                <NavLink to='/' ><img className="nav-img" src="https://www.sorsware.com/images/product/eticaret_logo_buyuk.png" /></NavLink>
+                <NavLink to='/' ><img className="nav-img" src="https://www.sorsware.com/images/product/eticaret_logo_buyuk.png" alt="logo" /></NavLink>
                 <div className="nav-router">
                     <NavLink to='/' className="nav-link">Tüm Ürünler</NavLink>
                     {/* <NavLink to='/basket' className="nav-link">Sepet</NavLink> */}
                     <NavLink to='/categories' className="nav-link">Kategoriler</NavLink>
                     <NavLink to='/contact' className="nav-link">İletişim</NavLink>
                     {/* <NavLink to='/login' className="nav-link">Üye ol</NavLink> */}
-                    {user == ''? (
+                    {user === ''? (
                         <NavLink to='/login' className="nav-link">Giriş Yap</NavLink>
                     ) : <NavLink className="nav-link" to='/'><button onClick={logout} className="nav-link-quit">Çıkış Yap</button></NavLink>}
                     <NavLink to='/signup' className="nav-link">KAYIT OL </NavLink>

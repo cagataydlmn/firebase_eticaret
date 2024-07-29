@@ -158,9 +158,9 @@ body {
     .products-buttons {
         bottom: 77%;
         position: relative;
-        align-items: end;
+        align-items: flex-end;
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
         flex-direction: column;
         gap: 20px;
 
@@ -180,7 +180,7 @@ body {
 
         a {
             display: flex;
-            justify-content: end;
+            justify-content: flex-end;
 
             svg {
                 padding-right: 10px;

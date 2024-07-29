@@ -1,4 +1,4 @@
-import { Route, Routes, Link, NavLink } from 'react-router-dom'
+import { Route, Routes, } from 'react-router-dom'
 import Nav from './components/Nav';
 import { Basket } from './pages/Basket';
 import { Home } from './pages/Home';
@@ -13,6 +13,7 @@ import Login from './pages/Login';
 import { Categories } from './pages/Categories';
 import { CategoryDetail } from './pages/CategoryDetail';
 import SignUp from './pages/SignUp';
+import Buy from './pages/Buy';
 
 function App() {
   
@@ -39,6 +40,7 @@ function App() {
           <Route path='/categories/:brand/products/:productId' element={<ProductDetail/>}/>
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='/login' element={<Login/>}/>
+          <Route path='/buy' element={<Buy/>}/>
         </Route>
       </Routes>
     </AppProvider >

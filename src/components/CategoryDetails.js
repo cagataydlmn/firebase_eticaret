@@ -26,7 +26,7 @@ export function CategoryDetails() {
                 }
                 setLoading(false)
             })
-    }, [])
+    }, [category,searchQuery])
     const brands = [...new Set(products.map(productItem => productItem.brand))]
 
     function handleFilterBrand(brand) {
@@ -77,7 +77,7 @@ export function CategoryDetails() {
                                                         {productItem.title}
                                                     </div>
                                                     <div className="categori-detail-general-top-image">
-                                                        <img src={productItem.images[0].replace('[', '').replace(']', '').replaceAll('"', '')} />
+                                                        <img src={productItem.images[0].replace('[', '').replace(']', '').replaceAll('"', '')} alt={productItem.title}/>
                                                     </div>
                                                     <div className="categori-detail-general-top-description">
                                                         {productItem.description}

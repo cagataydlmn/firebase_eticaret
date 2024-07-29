@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
-import ProductCart from "./ProductCart";
 import Loading from "./Loading";
 import HomeProduct from "./HomeProduct";
-import { ToastContainer } from "react-toastify";
 
 export function CategoryList() {
     const [products, setProducts] = useState([]);

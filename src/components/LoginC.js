@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Navigate, NavLink, useNavigate } from "react-router-dom";
-import { login, register } from "../firebase";
+import {  NavLink, useNavigate } from "react-router-dom";
+import { login,  } from "../firebase";
 import { login as loginHandle } from "../store/auth";
 
 export default function LoginC() {
@@ -9,7 +9,7 @@ export default function LoginC() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch()
-  const [name,setName]=useState("")
+  const [name]=useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault();

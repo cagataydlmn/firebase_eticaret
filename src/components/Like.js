@@ -10,6 +10,7 @@ export default function LikeList() {
 
   const handleDelete = async (id) => {
     const result = await deleteLike(id);
+    return result;
   };
   useEffect(() => {
     getLikeItems((items) => {
@@ -29,6 +30,7 @@ export default function LikeList() {
 
   likeItems.forEach(function (number) {
     const q=[number.productId] 
+    return q
    
   });
   return (
@@ -42,7 +44,7 @@ export default function LikeList() {
             <div>{item.productName}</div>
             <div>{item.productId}</div>
             <div>
-              <img style={{ width: "20%" }} src={item.productImage} />
+              <img style={{ width: "20%" }} src={item.productImage} alt={item.productName}/>
             </div>
             <div>{item.productPrice}</div>
             <div>{item.productDescription}</div>

@@ -4,8 +4,7 @@ import { ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
 export default function HomeProduct() {
     const { productItems,likeItems } = useSite()
-    const { user } = useSelector((state) => state.auth);
-
+    // const { user } = useSelector((state) => state.auth);
 
     return (
         <div className="home">

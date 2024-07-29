@@ -17,7 +17,7 @@ export default function ProductDetail({ productItem }) {
   const thisProduct = productItems.find(
     (product) => product.id === Number(productId)
   );
-
+    console.log(users);
   useEffect(() => {
     getComment(setCommentList);
     getUsers().then(setUsers);
@@ -66,6 +66,7 @@ export default function ProductDetail({ productItem }) {
                 .replace("[", "")
                 .replace("]", "")
                 .replaceAll('"', "")}
+                alt="resims"
             />
           </div>
         )}
@@ -86,8 +87,8 @@ export default function ProductDetail({ productItem }) {
             >
               <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
             </svg>
-            {window.getCookie("is_logged_in") == "false" ||
-            window.getCookie("is_logged_in") == undefined ? (
+            {window.getCookie("is_logged_in") === "false" ||
+            window.getCookie("is_logged_in") === undefined ? (
               <Link to="/login">
                 <span className="text"> Sepete Ekle !</span>
               </Link>

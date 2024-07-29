@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { register } from "../firebase";
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -9,6 +8,7 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = await register(email, password, name, lastName);
+    console.log(user);
   };
 
   return (
