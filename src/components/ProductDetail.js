@@ -17,7 +17,6 @@ export default function ProductDetail({ productItem }) {
   const thisProduct = productItems.find(
     (product) => product.id === Number(productId)
   );
-    console.log(users);
   useEffect(() => {
     getComment(setCommentList);
     getUsers().then(setUsers);

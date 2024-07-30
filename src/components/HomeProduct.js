@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 export default function HomeProduct() {
     const { productItems,likeItems } = useSite()
     const { user } = useSelector((state) => state.auth);
-    console.log(user);
     return (
         <div className="home">
             <div className="home-product">

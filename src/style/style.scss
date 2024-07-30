@@ -966,3 +966,180 @@ border-radius: 10px;
     }
 }
 
+
+.buy{
+    &_general{
+        &_form{
+            width: 25%;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            padding: 20px;
+            input{
+                height: 50px;
+            }
+            button{
+                background-color:#f0f0f0;
+                border: none;
+                height: 40px;
+                font-size: large;
+                color: black;
+                font-weight: 700;
+                border-radius: 10px;
+                :hover{
+                    cursor:crosshair;
+                    color: white;
+
+                }
+                
+               
+            }
+            &_title{
+                margin: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 92%;
+                input{
+                    width: 100%;
+                   margin: auto; 
+                }
+            }
+            &_name{
+                width: 92%;
+                display: flex;
+                justify-content: center;
+                margin: auto;
+               .buy_general_form_ad{
+                    width: 50%;
+                }
+                .buy_general_form_lastname{
+                    width: 50%;
+                }
+            }
+            &_phone{
+                margin: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 90%;
+                input{
+                   margin: auto; 
+                }
+            }
+            &_live{
+               width: 92%;
+               display: flex;
+               justify-content: center;
+               margin: auto; 
+               &_city{
+                width: 50%;
+               }
+               &_town{
+                width: 50%;
+               }
+            }
+            &_district{
+                margin: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 92%;
+                input{
+                    width: 100%;
+                   margin: auto; 
+                }
+            }
+            &_text{
+                margin: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 92%;
+                input{
+                    width: 100%;
+                   margin: auto; 
+                   height: 100px;
+
+                }
+
+            }
+            &_button{
+                margin: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 92%;
+
+                :hover{
+                    background-color: rgb(0, 202, 57) ;
+                    transition: 0.5s;
+                    cursor: pointer;
+                    color: white;
+
+
+                }
+                button{
+                    width: 100%;
+                   margin: auto; 
+                }
+            }
+
+        }
+    }
+}
+
+.adres_cart{
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &_carts{
+        &_title{
+            font-size: 25px;
+        }
+        &_id{
+            display: flex;
+            gap: 5px;
+            &_phone{
+                font-weight: 800;
+            }
+        }
+        &_live{
+            display: flex;
+        }
+        
+
+    }
+    &_check{
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        padding-right: 40px;
+        &_ok{
+            height: 35px;
+            width: 35px;
+        }
+        &_delete{
+            border: none;
+            background-color: white;
+            font-size: 50px;
+            color: red;
+            :hover{
+                cursor: pointer;
+            }
+        }
+        button{
+            display: flex;
+        }
+
+    }
+    
+}

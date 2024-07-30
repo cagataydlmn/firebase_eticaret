@@ -11,6 +11,8 @@
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.3.3",
     "firebase": "^10.12.4",
+    "jquery": "^3.7.1",
+    "jquery-mask-plugin": "^1.14.16",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",
     "react-credit-cards-2": "^1.0.2",
