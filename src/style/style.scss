@@ -255,6 +255,7 @@ body {
                 border-radius: 10px;
             }
         }
+
         &-image {
             flex: 0 0 150px;
             display: flex;
@@ -879,9 +880,11 @@ body {
     width: 98%;
     margin: auto;
     border-radius: 7px;
-&_top{
-    margin-bottom: 15px;
-}
+
+    &_top {
+        margin-bottom: 15px;
+    }
+
     &_form {
         margin-bottom: 30px;
         background-color: #fff;
@@ -898,6 +901,7 @@ body {
             justify-content: center;
             align-items: center;
             margin: auto;
+
             .comments_input {
                 width: 100%;
                 align-items: center;
@@ -939,26 +943,31 @@ body {
 
         }
     }
-    .comments_all{
+
+    .comments_all {
         background-color: white;
         border-radius: 10px;
-        &_top{
+
+        &_top {
             font-size: 24px;
             padding: 15px;
-            
+
         }
-        &_list{
+
+        &_list {
             border-radius: 10px;
             padding: 10px;
-            &_general{
+
+            &_general {
                 background-color: rgb(240, 240, 240);
                 margin-bottom: 15px;
                 padding: 10px;
                 border-radius: 10px;
-                .comments_all_list_comments{
+
+                .comments_all_list_comments {
                     background: aliceblue;
-padding: 10px;
-border-radius: 10px;
+                    padding: 10px;
+                    border-radius: 10px;
                 }
             }
         }
@@ -967,9 +976,9 @@ border-radius: 10px;
 }
 
 
-.buy{
-    &_general{
-        &_form{
+.buy {
+    &_general {
+        &_form {
             width: 25%;
             background-color: white;
             display: flex;
@@ -978,113 +987,132 @@ border-radius: 10px;
             border-radius: 10px;
             margin: 20px;
             padding: 20px;
-            input{
+
+            input {
                 height: 50px;
             }
-            button{
-                background-color:#f0f0f0;
+
+            button {
+                background-color: #f0f0f0;
                 border: none;
                 height: 40px;
                 font-size: large;
                 color: black;
                 font-weight: 700;
                 border-radius: 10px;
-                :hover{
-                    cursor:crosshair;
+
+                :hover {
+                    cursor: crosshair;
                     color: white;
 
                 }
-                
-               
+
+
             }
-            &_title{
+
+            &_title {
                 margin: auto;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 width: 92%;
-                input{
+
+                input {
                     width: 100%;
-                   margin: auto; 
+                    margin: auto;
                 }
             }
-            &_name{
+
+            &_name {
                 width: 92%;
                 display: flex;
                 justify-content: center;
                 margin: auto;
-               .buy_general_form_ad{
+
+                .buy_general_form_ad {
                     width: 50%;
                 }
-                .buy_general_form_lastname{
+
+                .buy_general_form_lastname {
                     width: 50%;
                 }
             }
-            &_phone{
+
+            &_phone {
                 margin: auto;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 width: 90%;
-                input{
-                   margin: auto; 
+
+                input {
+                    margin: auto;
                 }
             }
-            &_live{
-               width: 92%;
-               display: flex;
-               justify-content: center;
-               margin: auto; 
-               &_city{
-                width: 50%;
-               }
-               &_town{
-                width: 50%;
-               }
+
+            &_live {
+                width: 92%;
+                display: flex;
+                justify-content: center;
+                margin: auto;
+
+                &_city {
+                    width: 50%;
+                }
+
+                &_town {
+                    width: 50%;
+                }
             }
-            &_district{
+
+            &_district {
                 margin: auto;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 width: 92%;
-                input{
+
+                input {
                     width: 100%;
-                   margin: auto; 
+                    margin: auto;
                 }
             }
-            &_text{
+
+            &_text {
                 margin: auto;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 width: 92%;
-                input{
+
+                input {
                     width: 100%;
-                   margin: auto; 
-                   height: 100px;
+                    margin: auto;
+                    height: 100px;
 
                 }
 
             }
-            &_button{
+
+            &_button {
                 margin: auto;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 width: 92%;
 
-                :hover{
-                    background-color: rgb(0, 202, 57) ;
+                :hover {
+                    background-color: rgb(0, 202, 57);
                     transition: 0.5s;
                     cursor: pointer;
                     color: white;
 
 
                 }
-                button{
+
+                button {
                     width: 100%;
-                   margin: auto; 
+                    margin: auto;
                 }
             }
 
@@ -1092,7 +1120,7 @@ border-radius: 10px;
     }
 }
 
-.adres_cart{
+.adres_cart {
     background-color: white;
     margin: 10px;
     padding: 10px;
@@ -1100,46 +1128,146 @@ border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    &_carts{
-        &_title{
+
+    &_carts {
+        &_title {
             font-size: 25px;
         }
-        &_id{
+
+        &_id {
             display: flex;
             gap: 5px;
-            &_phone{
+
+            &_phone {
                 font-weight: 800;
             }
         }
-        &_live{
+
+        &_live {
             display: flex;
         }
-        
+
 
     }
-    &_check{
+
+    &_check {
         display: flex;
         gap: 20px;
         align-items: center;
         justify-content: center;
         padding-right: 40px;
-        &_ok{
+
+        &_ok {
             height: 35px;
             width: 35px;
         }
-        &_delete{
+
+        &_delete {
             border: none;
             background-color: white;
             font-size: 50px;
             color: red;
-            :hover{
+
+            :hover {
                 cursor: pointer;
             }
         }
-        button{
+
+        button {
             display: flex;
         }
 
     }
-    
+
+}
+
+.buy_top {
+    display: flex;
+}
+
+.buy_general_form_cart {
+    &_button {
+        background-color: #f0f0f0;
+        border: none;
+        height: 40px;
+        font-size: large;
+        color: black;
+        font-weight: 700;
+        border-radius: 10px;
+
+        :hover {
+            cursor: crosshair;
+            color: white;
+
+        }
+
+        button {
+            width: 100%;
+            margin: auto;
+        }
+    }
+
+    width: 25%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 20px;
+    padding-top: 60px;
+
+    input {
+        height: 50px;
+    }
+
+    &_name {
+        width: 100%;
+    }
+
+    &_no {
+        input {
+            width: 100%;
+
+        }
+    }
+
+    &_date {
+        display: flex;
+        width: 102%;
+
+        &_year {
+            width: 100%;
+        }
+
+        &_mount {
+            width: 100%;
+        }
+    }
+
+    &_button {
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 92%;
+        border: none;
+
+        :hover {
+            background-color: rgb(0, 202, 57);
+            transition: 0.5s;
+            cursor: pointer;
+            color: white;
+
+
+        }
+
+        button {
+            height: 50px;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: 800;
+        }
+    }
 }

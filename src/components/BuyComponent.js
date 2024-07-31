@@ -6,10 +6,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { MdDelete } from "react-icons/md";
 import $ from "jquery";
 import "jquery-mask-plugin";
+import { useSite } from "../context/AppContext";
 
-export default function BuyComponent() {
+export default function BuyComponent({totalPrice}) {
   const { user } = useSelector((state) => state.auth);
-
   const [adresName, setAdresName] = useState("");
   const [adresLastName, setAdresLastName] = useState("");
   const [adresPhone, setAdresPhone] = useState("");
@@ -19,8 +19,11 @@ export default function BuyComponent() {
   const [adresGeneral, setAdresGeneral] = useState("");
   const [adresTitle, setAdresTitle] = useState("");
   const [adressesList, setAdressesList] = useState([]);
-
-  const addAdresses = async (e) => {
+  const [cartName, setCartName] = useState("")
+  const [cartNo, setCartNo] = useState("")
+  const [cartDate, setCartDate] = useState("")
+  const [cartSecurity, setCartSecurity] = useState("")
+    const addAdresses = async (e) => {
     e.preventDefault();
     if (
       !adresTitle ||
@@ -67,7 +70,6 @@ export default function BuyComponent() {
   }, []);
 
   const notify = () => toast.success("Adres Başarıyla Eklendi!");
-
   const resetForm = () => {
     setAdresTitle("");
     setAdresName("");
@@ -90,6 +92,8 @@ export default function BuyComponent() {
   return (
     <div className="buy">
       <div className="buy_general">
+        <div className="buy_top">
+           {totalPrice}
         <form onSubmit={addAdresses} className="buy_general_form">
           Adres Ekle
           <div className="buy_general_form_title">
@@ -155,6 +159,28 @@ export default function BuyComponent() {
             <button type="submit">Adresi kaydet</button>
           </div>
         </form>
+
+        <form className="buy_general_form_cart">
+          Kart Bilgileri
+          <div className="buy_general_form_cart_name">
+            <input placeholder="Kartın üstündeki isim"/>
+          </div>
+          <div className="buy_general_form_cart_no">
+            <input placeholder="kart no:"/>
+          </div>
+          <div className="buy_general_form_cart_date">
+            <input className="buy_general_form_cart_date_mount" placeholder="ay"/>
+            <input placeholder="skt yıl" className="buy_general_form_cart_date_year"/>
+          </div>
+          <div>
+            <input className="buy_general_form_cart_cvv" placeholder="güvenlik kodu CVV"/>
+          </div>
+          <div className="buy_general_form_cart_button">
+            <button>Onayla</button>
+          </div>
+        </form>
+        </div>
+      
         <div className="buy_general_saved">
           KAYITLI ADRESLERİM:
           {adressesList.map((adres) => (
@@ -201,8 +227,6 @@ export default function BuyComponent() {
           ))}
         </div>
       </div>
-
-      <div>Kredi Kartı Alanı</div>
       <div>
         <button>Onayla</button>
       </div>

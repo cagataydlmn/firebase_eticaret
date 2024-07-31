@@ -19,7 +19,7 @@ const Provider = ({ children }) => {
     likeItems,
     setLikeItems,
   };
-
+  
   useEffect(() => {
     if (selectProductItems.length > 0) {
       localStorage.setItem(
