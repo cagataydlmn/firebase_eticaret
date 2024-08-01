@@ -20,47 +20,13 @@ const Provider = ({ children }) => {
     setLikeItems,
   };
   
-  useEffect(() => {
-    if (selectProductItems.length > 0) {
-      localStorage.setItem(
-        "selectProductItems",
-        JSON.stringify(selectProductItems)
-      );
-      localStorage.setItem("totalPrice", totalPrice);
-    }
-  }, [selectProductItems, totalPrice]);
-
-  useEffect(() => {
-    if (likeItems.length > 0) {
-      localStorage.setItem("likeItems", JSON.stringify(likeItems));
-    }
-  }, [likeItems]);
-
   const { data: productData } = useFetch("https://dummyjson.com/products");
 
   useEffect(() => {
-    if (productData && productData.products) {
-      productData.products.forEach((element) => {
-        element.quantity = 1;
-        element.toplamFiyat = element.price * element.quantity;
-      });
-      setProductItems(productData.products);
-    }
+     
+    
   }, [productData]);
 
-  useEffect(() => {
-    const savedProduct = JSON.parse(localStorage.getItem("selectProductItems"));
-    const totalPriceStorage = Number(localStorage.getItem("totalPrice"));
-    const liked = JSON.parse(localStorage.getItem("likeItems"));
-
-    if (liked?.length > 0) {
-      setLikeItems(liked);
-    }
-    if (savedProduct) {
-      setSelectProductItems(savedProduct);
-      setTotalPrice(totalPriceStorage);
-    }
-  }, []);
 
   return <AppContext.Provider value={data}>{children}</AppContext.Provider>;
 };

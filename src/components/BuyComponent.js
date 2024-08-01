@@ -6,9 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { MdDelete } from "react-icons/md";
 import $ from "jquery";
 import "jquery-mask-plugin";
-import { useSite } from "../context/AppContext";
 
-export default function BuyComponent({totalPrice}) {
+export default function BuyComponent({ totalPrice }) {
   const { user } = useSelector((state) => state.auth);
   const [adresName, setAdresName] = useState("");
   const [adresLastName, setAdresLastName] = useState("");
@@ -19,11 +18,18 @@ export default function BuyComponent({totalPrice}) {
   const [adresGeneral, setAdresGeneral] = useState("");
   const [adresTitle, setAdresTitle] = useState("");
   const [adressesList, setAdressesList] = useState([]);
-  const [cartName, setCartName] = useState("")
-  const [cartNo, setCartNo] = useState("")
-  const [cartDate, setCartDate] = useState("")
-  const [cartSecurity, setCartSecurity] = useState("")
-    const addAdresses = async (e) => {
+  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [cartData, setCartData] = useState({
+    cartName: "",
+    cartNo: "",
+    cartMount: "",
+    cartSecurity: "",
+    cartData: "",
+    cartYear: "",
+  });
+  const [allData, setAllData] = useState(null);
+
+  const addAdresses = async (e) => {
     e.preventDefault();
     if (
       !adresTitle ||
@@ -69,6 +75,78 @@ export default function BuyComponent({totalPrice}) {
     };
   }, []);
 
+  useEffect(() => {
+    $("#cartInput").mask("0000 0000 0000 0000");
+
+    return () => {
+      $("#cartInput").unmask();
+    };
+  }, []);
+
+  useEffect(() => {
+    getAdress(setAdressesList);
+  }, []);
+
+  const handleChangeCart = (e) => {
+    const { name, value } = e.target;
+    setCartData({
+      ...cartData,
+      [name]: value,
+    });
+  };
+
+  const handleAddressSelect = (adresId) => {
+    setSelectedAddress(adresId);
+  };
+
+  const handleSubmitCart = (e) => {
+    e.preventDefault();
+    if (!selectedAddress) {
+      toast.error("Lütfen bir adres seçin.");
+      return;
+    }
+    if (
+      !cartData.cartName ||
+      !cartData.cartNo ||
+      !cartData.cartMount ||
+      !cartData.cartYear ||
+      !cartData.cartSecurity
+    ) {
+      toast.error("Lütfen tüm kart bilgilerini doldurun.");
+      return;
+    }
+    console.log("Seçilen adres ID:", selectedAddress);
+    console.log("Kart Bilgileri:", cartData);
+  };
+
+  const handleSaveAllData = () => {
+    if (!selectedAddress) {
+      toast.error("Lütfen bir adres seçin.");
+      return;
+    }
+    if (
+      !cartData.cartName ||
+      !cartData.cartNo ||
+      !cartData.cartMount ||
+      !cartData.cartYear ||
+      !cartData.cartSecurity
+    ) {
+      toast.error("Lütfen tüm kart bilgilerini doldurun.");
+      return;
+    }
+    const selectedAddressData = adressesList.find(
+      (adres) => adres.id === selectedAddress
+    );
+    const allFormData = {
+      address: selectedAddressData,
+      cart: cartData,
+    };
+    setAllData(allFormData);
+    console.log("Tüm Veriler:", allFormData);
+    toast.success("Sipariş alındı.");
+    console.log(allData);
+  };
+
   const notify = () => toast.success("Adres Başarıyla Eklendi!");
   const resetForm = () => {
     setAdresTitle("");
@@ -81,10 +159,6 @@ export default function BuyComponent({totalPrice}) {
     setAdresGeneral("");
   };
 
-  useEffect(() => {
-    getAdress(setAdressesList);
-  }, []);
-
   const handleChange = async (uid) => {
     await deleteAdress(uid);
   };
@@ -93,96 +167,128 @@ export default function BuyComponent({totalPrice}) {
     <div className="buy">
       <div className="buy_general">
         <div className="buy_top">
-           {totalPrice}
-        <form onSubmit={addAdresses} className="buy_general_form">
-          Adres Ekle
-          <div className="buy_general_form_title">
-            <input
-              value={adresTitle}
-              onChange={(e) => setAdresTitle(e.target.value)}
-              placeholder="Adres Başlığı"
-            />
-          </div>
-          <div className="buy_general_form_name">
-            <input
-              value={adresName}
-              onChange={(e) => setAdresName(e.target.value)}
-              className="buy_general_form_ad"
-              placeholder="Ad"
-            />{" "}
-            <input
-              value={adresLastName}
-              onChange={(e) => setAdresLastName(e.target.value)}
-              className="buy_general_form_lastname"
-              placeholder="Soyad"
-            />
-          </div>
-          <div>
-            <input
-              id="phoneInput"
-              value={adresPhone}
-              onChange={(e) => setAdresPhone(e.target.value)}
-              className="buy_general_form_phone"
-              placeholder="Cep Telefonu (Başında 0 olmadan )"
-            />
-          </div>
-          <div className="buy_general_form_live">
-            <input
-              value={adresCity}
-              onChange={(e) => setAdresCity(e.target.value)}
-              className="buy_general_form_live_city"
-              placeholder="Şehir"
-            />
-            <input
-              value={adresTown}
-              onChange={(e) => setAdresTown(e.target.value)}
-              className="buy_general_form_live_town"
-              placeholder="İlçe"
-            />
-          </div>
-          <div className="buy_general_form_district">
-            <input
-              value={adresDistrict}
-              onChange={(e) => setAdresDistrict(e.target.value)}
-              className="buy_general_form_district_district_area"
-              placeholder="Mahalle"
-            />
-          </div>
-          <div className="buy_general_form_text">
-            <input
-              value={adresGeneral}
-              onChange={(e) => setAdresGeneral(e.target.value)}
-              placeholder="Adres Detayları"
-            />
-          </div>
-          <div className="buy_general_form_button">
-            <button type="submit">Adresi kaydet</button>
-          </div>
-        </form>
+          <form onSubmit={handleSubmitCart} className="buy_general_form">
+            <h2>Adres Ekle</h2>
+            <div className="buy_general_form_title">
+              <input
+                value={adresTitle}
+                onChange={(e) => setAdresTitle(e.target.value)}
+                placeholder="Adres Başlığı"
+              />
+            </div>
+            <div className="buy_general_form_name">
+              <input
+                value={adresName}
+                onChange={(e) => setAdresName(e.target.value)}
+                className="buy_general_form_ad"
+                placeholder="Ad"
+              />{" "}
+              <input
+                value={adresLastName}
+                onChange={(e) => setAdresLastName(e.target.value)}
+                className="buy_general_form_lastname"
+                placeholder="Soyad"
+              />
+            </div>
+            <div>
+              <input
+                id="phoneInput"
+                value={adresPhone}
+                onChange={(e) => setAdresPhone(e.target.value)}
+                className="buy_general_form_phone"
+                placeholder="Cep Telefonu (Başında 0 olmadan )"
+              />
+            </div>
+            <div className="buy_general_form_live">
+              <input
+                value={adresCity}
+                onChange={(e) => setAdresCity(e.target.value)}
+                className="buy_general_form_live_city"
+                placeholder="Şehir"
+              />
+              <input
+                value={adresTown}
+                onChange={(e) => setAdresTown(e.target.value)}
+                className="buy_general_form_live_town"
+                placeholder="İlçe"
+              />
+            </div>
+            <div className="buy_general_form_district">
+              <input
+                value={adresDistrict}
+                onChange={(e) => setAdresDistrict(e.target.value)}
+                className="buy_general_form_district_district_area"
+                placeholder="Mahalle"
+              />
+            </div>
+            <div className="buy_general_form_text">
+              <input
+                value={adresGeneral}
+                onChange={(e) => setAdresGeneral(e.target.value)}
+                placeholder="Adres Detayları"
+              />
+            </div>
+            <div className="buy_general_form_button">
+              <button type="button" onClick={addAdresses}>
+                Adresi kaydet
+              </button>
+            </div>
 
-        <form className="buy_general_form_cart">
-          Kart Bilgileri
-          <div className="buy_general_form_cart_name">
-            <input placeholder="Kartın üstündeki isim"/>
-          </div>
-          <div className="buy_general_form_cart_no">
-            <input placeholder="kart no:"/>
-          </div>
-          <div className="buy_general_form_cart_date">
-            <input className="buy_general_form_cart_date_mount" placeholder="ay"/>
-            <input placeholder="skt yıl" className="buy_general_form_cart_date_year"/>
-          </div>
-          <div>
-            <input className="buy_general_form_cart_cvv" placeholder="güvenlik kodu CVV"/>
-          </div>
-          <div className="buy_general_form_cart_button">
-            <button>Onayla</button>
-          </div>
-        </form>
+            <h2>Kart Bilgileri</h2>
+            <div className="buy_general_form_cart_name">
+              <input
+                type="text"
+                name="cartName"
+                value={cartData.cartName}
+                onChange={handleChangeCart}
+                placeholder="Kartın üstündeki isim"
+              />
+            </div>
+            <div className="buy_general_form_cart_no">
+              <input
+                id="cartInput"
+                name="cartNo"
+                value={cartData.cartNo}
+                onChange={handleChangeCart}
+                placeholder="Kart No"
+              />
+            </div>
+            <div className="buy_general_form_cart_date">
+              <input
+                type="number"
+                name="cartMount"
+                value={cartData.cartMount}
+                onChange={handleChangeCart}
+                className="buy_general_form_cart_date_mount"
+                placeholder="Ay"
+              />
+              <input
+                type="number"
+                name="cartYear"
+                value={cartData.cartYear}
+                onChange={handleChangeCart}
+                placeholder="Yıl"
+                className="buy_general_form_cart_date_year"
+              />
+            </div>
+            <div>
+              <input
+                type="number"
+                name="cartSecurity"
+                value={cartData.cartSecurity}
+                onChange={handleChangeCart}
+                className="buy_general_form_cart_cvv"
+                placeholder="Güvenlik Kodu CVV"
+              />
+            </div>
+            <div className="buy_general_form_cart_button">
+              <button onClick={handleSaveAllData} type="submit">Onayla</button>
+            </div>
+          </form>
         </div>
-      
+        <h2>Kayıtlı Adreslerim</h2>
+
         <div className="buy_general_saved">
-          KAYITLI ADRESLERİM:
           {adressesList.map((adres) => (
             <div className="adres_cart" key={adres.id}>
               <div className="adres_cart_carts">
@@ -210,25 +316,29 @@ export default function BuyComponent({totalPrice}) {
                 <div className="adres_cart_carts_district">
                   {adres.adresDistrict}
                 </div>
-                <div className="adres_cart_carts_general">
+                <div className="adres_cart_carts_text">
                   {adres.adresGeneral}
                 </div>
-              </div>
-              <div className="adres_cart_check">
-                <input className="adres_cart_check_ok" type="checkbox" />
-                <button
-                  onClick={() => handleChange(adres.id)}
-                  className="adres_cart_check_delete"
-                >
-                  <MdDelete />
-                </button>
+                <div className="adres_cart_carts_radio">
+                  <input
+                    type="radio"
+                    name="selectedAddress"
+                    value={adres.id}
+                    checked={selectedAddress === adres.id}
+                    onChange={() => handleAddressSelect(adres.id)}
+                  />
+                  Bu adresi seç
+                </div>
+                <div className="adres_cart_carts_delete">
+                  <MdDelete
+                    onClick={() => handleChange(adres.id)}
+                    style={{ cursor: "pointer" }}
+                  />
+                </div>
               </div>
             </div>
           ))}
         </div>
-      </div>
-      <div>
-        <button>Onayla</button>
       </div>
       <ToastContainer />
     </div>

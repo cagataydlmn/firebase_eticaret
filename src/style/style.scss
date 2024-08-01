@@ -151,6 +151,7 @@ body {
                     }
 
                 }
+                
             }
         }
     }
@@ -1016,7 +1017,7 @@ body {
                 justify-content: center;
                 align-items: center;
                 width: 92%;
-
+                background-color: black;
                 input {
                     width: 100%;
                     margin: auto;
@@ -1119,7 +1120,10 @@ body {
         }
     }
 }
-
+.buy_general_saved{
+    display: flex;
+    flex-wrap: wrap;
+}
 .adres_cart {
     background-color: white;
     margin: 10px;
@@ -1269,5 +1273,10 @@ body {
             font-size: 20px;
             font-weight: 800;
         }
+    }
+}
+.products-image{
+    img{
+        width: 100%;
     }
 }
