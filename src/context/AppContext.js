@@ -20,11 +20,17 @@ const Provider = ({ children }) => {
     setLikeItems,
   };
   
+  
+ 
+
   const { data: productData } = useFetch("https://dummyjson.com/products");
 
   useEffect(() => {
-     
-    
+    if (productData && productData.products) {
+      productData.products.forEach((element) => {
+      });
+      setProductItems(productData.products);
+    }
   }, [productData]);
 
 
