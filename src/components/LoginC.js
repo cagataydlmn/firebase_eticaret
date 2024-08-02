@@ -3,19 +3,26 @@ import { useDispatch } from "react-redux";
 import {  NavLink, useNavigate } from "react-router-dom";
 import { login,  } from "../firebase";
 import { login as loginHandle } from "../store/auth";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function LoginC() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch()
   const [name]=useState("")
-
+  const notifyError = (message) => toast.error(`Hata: ${message}`);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = await login(email, password,name);
-    dispatch(loginHandle(user));
-    navigate("/", { replace: true });
+    try {
+      const user = await login(email, password,name);
+      dispatch(loginHandle(user));
+      navigate("/", { replace: true });
+    } catch (error) {
+      notifyError(error.message);
+
+    }
+   
   };
 
   return (
@@ -50,11 +57,13 @@ export default function LoginC() {
             />
           </div>
           <button type="submit">Giriş Yap</button>
-        </form>
-      </div>
-      <div>
+          <div>
         Hesabın yok mu hemen <NavLink to="/signup">kayıt ol</NavLink> 
       </div>
+        </form>
+      </div>
+     
+      <ToastContainer/>
     </>
   );
 }

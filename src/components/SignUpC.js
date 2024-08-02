@@ -1,16 +1,25 @@
 import { useState } from "react";
 import { register } from "../firebase";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name,setName]=useState("")
   const [lastName,setLastName]=useState("")
+
+  const notifySuccess = () => toast.success("Kayıt başarıyla tamamlandı!");
+  const notifyError = (message) => toast.error(`Hata: ${message}`);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = await register(email, password, name, lastName);
-    console.log(user);
+    try {
+      const user = await register(email, password, name, lastName);
+      notifySuccess()
+    } catch (error) {
+        notifyError(error.message);
+    }
+   
   };
-
   return (
     <>
       <div className="login_general">
@@ -25,7 +34,7 @@ export default function SignUp() {
             />
           </div>
           <div className="login_name">
-            <label> soyad:</label>
+            <label> Soyadı:</label>
             <input
               type="text"
               placeholder=" soyadı"
@@ -54,6 +63,7 @@ export default function SignUp() {
           <button type="submit">Kayıt ol</button>
         </form>
       </div>
+      <ToastContainer />
     </>
   );
 }

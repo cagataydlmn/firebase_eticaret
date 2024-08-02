@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBasketShopping, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { addBasket, addLike } from "../firebase";
 import { useSelector } from "react-redux";
@@ -20,16 +20,15 @@ export default function ProductCart({
   const [sizeOpen, setSizeOpen] = useState(false);
   const { user } = useSelector((state) => state.auth);
 
-  // const showToastMessage = () => {
-  //   toast.success("Ürün Sepete Eklendi!");
-  // };
+  const showToastMessage = () => {
+    toast.success("Ürün Sepete Eklendi!");
+  };
 
   const handleSizeOpen = () => {
     setSizeOpen(!sizeOpen);
   };
 
   const addProduct = async (e) => {
-    e.preventDefault();
     if (user && user.uid) {
       await addBasket(
         {
@@ -95,8 +94,7 @@ export default function ProductCart({
             {sizeOpen && (
               <div className="popup-active">
                 <button
-                  onClick={
-                    addProduct
+                  onClick={() => { addProduct(); showToastMessage() }
                   }
                 >
                   sepete ekle
